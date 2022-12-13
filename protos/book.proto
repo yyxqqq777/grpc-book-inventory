@@ -1,0 +1,29 @@
+// book.proto
+
+syntax = "proto3";
+
+// the genre type
+enum Genre {
+    FICTION = 0;
+    NOVEL = 1;
+    HISTORY = 2;
+    FAIRY_TALE = 3;
+}
+
+message Book {
+  // The book ISBN
+  string isbn = 1;
+
+  // The book title
+  string title = 2;
+
+  // The book author
+  string author = 3;
+
+  // the book genre
+  Genre genre = 4;
+
+  // publishing year.
+  int32 publishing_year = 5;
+}
+
