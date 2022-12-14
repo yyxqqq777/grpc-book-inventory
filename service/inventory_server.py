@@ -17,10 +17,10 @@ class InventoryService(inventory_pb2_grpc.InventoryServiceServicer):
     def CreateBook(self, request, context):
         print(request)
         self.books.append(request)
-        return inventory_pb2.BookResponse()
+        return inventory_pb2.CreateBookResponse(success="ok")
 
     def GetBook(self, request, context):
-        isbn = request.value
+        isbn = request.isbn
         print(isbn)
         for b in self.books:
             if b.isbn == isbn:
