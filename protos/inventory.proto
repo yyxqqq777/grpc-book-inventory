@@ -6,15 +6,16 @@ import "google/protobuf/wrappers.proto";
 
 import "book.proto";
 
-message BookResponse {
-  string message = 1;
-}
-
 // The InventoryService
 service InventoryService {
   // Creates a new book.
   rpc CreateBook(Book) returns (BookResponse);
 
   // Gets a book by its ISBN.
-  rpc GetBook(google.protobuf.StringValue) returns (Book) {}
+  rpc GetBook(google.protobuf.StringValue) returns (BookResponse) {}
 }
+
+message BookResponse {
+  Book book = 1;
+}
+
