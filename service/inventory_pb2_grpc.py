@@ -3,12 +3,12 @@
 import grpc
 
 import book_pb2 as book__pb2
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 from google.protobuf import wrappers_pb2 as google_dot_protobuf_dot_wrappers__pb2
+import inventory_pb2 as inventory__pb2
 
 
 class InventoryServiceStub(object):
-    """The `InventoryService` gRPC service.
+    """The InventoryService
     """
 
     def __init__(self, channel):
@@ -20,7 +20,7 @@ class InventoryServiceStub(object):
         self.CreateBook = channel.unary_unary(
                 '/InventoryService/CreateBook',
                 request_serializer=book__pb2.Book.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=inventory__pb2.BookResponse.FromString,
                 )
         self.GetBook = channel.unary_unary(
                 '/InventoryService/GetBook',
@@ -30,7 +30,7 @@ class InventoryServiceStub(object):
 
 
 class InventoryServiceServicer(object):
-    """The `InventoryService` gRPC service.
+    """The InventoryService
     """
 
     def CreateBook(self, request, context):
@@ -53,7 +53,7 @@ def add_InventoryServiceServicer_to_server(servicer, server):
             'CreateBook': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateBook,
                     request_deserializer=book__pb2.Book.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=inventory__pb2.BookResponse.SerializeToString,
             ),
             'GetBook': grpc.unary_unary_rpc_method_handler(
                     servicer.GetBook,
@@ -68,7 +68,7 @@ def add_InventoryServiceServicer_to_server(servicer, server):
 
  # This class is part of an EXPERIMENTAL API.
 class InventoryService(object):
-    """The `InventoryService` gRPC service.
+    """The InventoryService
     """
 
     @staticmethod
@@ -84,7 +84,7 @@ class InventoryService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/InventoryService/CreateBook',
             book__pb2.Book.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            inventory__pb2.BookResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
